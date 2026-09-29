@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zato — Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-gray-100" style="font-family: 'Inter', sans-serif;">
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 flex flex-col z-30" style="background-color:#534AB7;">
+
+    <!-- Logo -->
+    <div class="px-6 py-7" style="border-bottom:1px solid rgba(255,255,255,0.12);">
+      <span class="text-white text-2xl font-extrabold tracking-tight">Zato</span>
+      <p class="text-xs mt-0.5" style="color:rgba(255,255,255,0.5);">Controle seu dinheiro.</p>
+    </div>
+
+    <!-- Nav -->
+    <nav class="flex-1 px-4 py-6 space-y-1">
+      <a href="#" class="nav-item-active flex items-center gap-3 px-4 py-3 rounded-xl text-white font-semibold text-sm" style="background:rgba(255,255,255,0.18);">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition" style="color:rgba(255,255,255,0.65);">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        Nova Transação
+      </a>
+      <a href="#" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition" style="color:rgba(255,255,255,0.65);">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        Transações
+      </a>
+      <a href="#" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition" style="color:rgba(255,255,255,0.65);">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        Contas Bancárias
+      </a>
+      <a href="#" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition" style="color:rgba(255,255,255,0.65);">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Metas
+      </a>
+    </nav>
+
+    <!-- Usuário -->
+    <div class="px-4 py-5" style="border-top:1px solid rgba(255,255,255,0.12);">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0" style="background:rgba(255,255,255,0.2);">E</div>
+        <div>
+          <p class="text-white text-sm font-medium">Enzo Carezzato</p>
+          <p class="text-xs" style="color:rgba(255,255,255,0.4);">enzo@zato.com</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile top bar -->
+  <header class="mobile-header fixed top-0 left-0 right-0 h-14 flex items-center justify-between px-5 z-20" style="background-color:#534AB7;">
+    <span class="text-white text-xl font-extrabold">Zato</span>
+    <button id="menu-btn" class="text-white focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </header>
+
+  <!-- Main content -->
+  <main class="main-content min-h-screen px-6 py-8" style="margin-left:256px;">
+
+    <!-- Topo -->
+    <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+      <div>
+        <h1 class="text-gray-900 text-2xl font-bold">Olá, Enzo 👋</h1>
+        <p class="text-gray-400 text-sm mt-0.5">Junho 2026 · Resumo financeiro</p>
+      </div>
+      <button class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition btn-nova" style="background-color:#534AB7;">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        Nova Transação
+      </button>
+    </div>
+
+    <!-- Cards de resumo -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-6">
+
+      <!-- Saldo total -->
+      <div class="rounded-2xl p-6 text-white" style="background:linear-gradient(135deg,#534AB7 0%,#6C63CF 100%);">
+        <p class="text-xs font-semibold uppercase tracking-wider mb-1" style="color:rgba(255,255,255,0.6);">Saldo Total</p>
+        <p class="text-3xl font-extrabold mt-1">R$ 8.420,00</p>
+        <div class="flex items-center gap-2 mt-3">
+          <span class="text-xs font-semibold px-2 py-0.5 rounded-full" style="background:rgba(255,255,255,0.2);">▲ 12%</span>
+          <span class="text-xs" style="color:rgba(255,255,255,0.55);">vs. mês anterior</span>
+        </div>
+      </div>
+
+      <!-- Receitas -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-1">Receitas</p>
+        <p class="text-2xl font-bold text-gray-900 mt-1">R$ 6.200,00</p>
+        <div class="flex items-center gap-2 mt-3">
+          <span class="text-emerald-500 text-xs font-semibold">▲ 8%</span>
+          <span class="text-gray-400 text-xs">este mês</span>
+        </div>
+      </div>
+
+      <!-- Gastos -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-1">Gastos</p>
+        <p class="text-2xl font-bold text-gray-900 mt-1">R$ 3.780,00</p>
+        <div class="flex items-center gap-2 mt-3">
+          <span class="text-red-400 text-xs font-semibold">▼ 3%</span>
+          <span class="text-gray-400 text-xs">este mês</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contas + Gráfico -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-5 mb-6">
+
+      <!-- Contas -->
+      <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <h2 class="text-gray-800 font-semibold text-sm mb-4">Contas Conectadas</h2>
+        <div class="space-y-3">
+
+          <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 banco-card">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm text-white flex-shrink-0" style="background:#8A05BE;">N</div>
+              <div>
+                <p class="text-gray-800 text-sm font-medium">Nubank</p>
+                <p class="text-gray-400 text-xs">Conta digital</p>
+              </div>
+            </div>
+            <span class="text-gray-900 text-sm font-semibold">R$ 3.120,00</span>
+          </div>
+
+          <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 banco-card">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm text-white flex-shrink-0" style="background:#003087;">I</div>
+              <div>
+                <p class="text-gray-800 text-sm font-medium">Itaú</p>
+                <p class="text-gray-400 text-xs">Conta corrente</p>
+              </div>
+            </div>
+            <span class="text-gray-900 text-sm font-semibold">R$ 2.850,00</span>
+          </div>
+
+          <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 banco-card">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm flex-shrink-0" style="background:#FFCC00;color:#003087;">BB</div>
+              <div>
+                <p class="text-gray-800 text-sm font-medium">Banco do Brasil</p>
+                <p class="text-gray-400 text-xs">Poupança</p>
+              </div>
+            </div>
+            <span class="text-gray-900 text-sm font-semibold">R$ 2.450,00</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Gráfico -->
+      <div class="lg:col-span-3 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <h2 class="text-gray-800 font-semibold text-sm mb-4">Gastos por Categoria</h2>
+
+        <!-- Barras -->
+        <div class="flex items-end gap-3 h-36 mb-4 pb-2" style="border-bottom:1px solid #F0F0F0;">
+          <div class="flex flex-col items-center gap-1 flex-1 h-full justify-end">
+            <span class="text-gray-500 text-xs">R$980</span>
+            <div class="w-full rounded-t-md" style="height:85%;background:#534AB7;"></div>
+            <span class="text-gray-400 text-xs text-center leading-tight">Moradia</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 flex-1 h-full justify-end">
+            <span class="text-gray-500 text-xs">R$620</span>
+            <div class="w-full rounded-t-md" style="height:55%;background:#6C63CF;"></div>
+            <span class="text-gray-400 text-xs text-center leading-tight">Aliment.</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 flex-1 h-full justify-end">
+            <span class="text-gray-500 text-xs">R$480</span>
+            <div class="w-full rounded-t-md" style="height:42%;background:#7B74CC;"></div>
+            <span class="text-gray-400 text-xs text-center leading-tight">Transp.</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 flex-1 h-full justify-end">
+            <span class="text-gray-500 text-xs">R$340</span>
+            <div class="w-full rounded-t-md" style="height:30%;background:#9B96D8;"></div>
+            <span class="text-gray-400 text-xs text-center leading-tight">Saúde</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 flex-1 h-full justify-end">
+            <span class="text-gray-500 text-xs">R$260</span>
+            <div class="w-full rounded-t-md" style="height:22%;background:#B8B4E3;"></div>
+            <span class="text-gray-400 text-xs text-center leading-tight">Lazer</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 flex-1 h-full justify-end">
+            <span class="text-gray-500 text-xs">R$180</span>
+            <div class="w-full rounded-t-md" style="height:15%;background:#D4D2EF;"></div>
+            <span class="text-gray-400 text-xs text-center leading-tight">Outros</span>
+          </div>
+        </div>
+
+        <!-- Progress legenda -->
+        <div class="space-y-2 mt-3">
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#534AB7;"></div>
+            <div class="flex-1 bg-gray-100 rounded-full" style="height:6px;">
+              <div class="h-full rounded-full" style="width:82%;background:#534AB7;"></div>
+            </div>
+            <span class="text-gray-400 text-xs w-24 text-right">Moradia — 26%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#6C63CF;"></div>
+            <div class="flex-1 bg-gray-100 rounded-full" style="height:6px;">
+              <div class="h-full rounded-full" style="width:52%;background:#6C63CF;"></div>
+            </div>
+            <span class="text-gray-400 text-xs w-24 text-right">Alimentação — 16%</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:#9B96D8;"></div>
+            <div class="flex-1 bg-gray-100 rounded-full" style="height:6px;">
+              <div class="h-full rounded-full" style="width:40%;background:#9B96D8;"></div>
+            </div>
+            <span class="text-gray-400 text-xs w-24 text-right">Transporte — 13%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabela de transações -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="text-gray-800 font-semibold text-sm">Últimas Transações</h2>
+        <a href="#" class="text-xs font-semibold hover:underline" style="color:#534AB7;">Ver todas →</a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-xs uppercase tracking-wider text-gray-400" style="border-bottom:1px solid #F3F4F6;">
+              <th class="pb-3 text-left font-medium">Descrição</th>
+              <th class="pb-3 text-left font-medium">Categoria</th>
+              <th class="pb-3 text-left font-medium hide-mobile">Banco</th>
+              <th class="pb-3 text-left font-medium hide-mobile">Data</th>
+              <th class="pb-3 text-right font-medium">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row-hover" style="border-bottom:1px solid #F9FAFB;">
+              <td class="py-3.5 text-gray-800 font-medium">Salário</td>
+              <td class="py-3.5"><span class="tag" style="background:#D1FAE5;color:#059669;">Receita</span></td>
+              <td class="py-3.5 text-gray-500 hide-mobile">Nubank</td>
+              <td class="py-3.5 text-gray-400 hide-mobile">10/06/2026</td>
+              <td class="py-3.5 text-right font-semibold text-emerald-500">+ R$ 5.000,00</td>
+            </tr>
+            <tr class="table-row-hover" style="border-bottom:1px solid #F9FAFB;">
+              <td class="py-3.5 text-gray-800 font-medium">Aluguel</td>
+              <td class="py-3.5"><span class="tag" style="background:#EDE9FF;color:#534AB7;">Moradia</span></td>
+              <td class="py-3.5 text-gray-500 hide-mobile">Itaú</td>
+              <td class="py-3.5 text-gray-400 hide-mobile">08/06/2026</td>
+              <td class="py-3.5 text-right font-semibold text-red-400">− R$ 980,00</td>
+            </tr>
+            <tr class="table-row-hover" style="border-bottom:1px solid #F9FAFB;">
+              <td class="py-3.5 text-gray-800 font-medium">Supermercado Extra</td>
+              <td class="py-3.5"><span class="tag" style="background:#FEF3C7;color:#D97706;">Alimentação</span></td>
+              <td class="py-3.5 text-gray-500 hide-mobile">Nubank</td>
+              <td class="py-3.5 text-gray-400 hide-mobile">07/06/2026</td>
+              <td class="py-3.5 text-right font-semibold text-red-400">− R$ 320,00</td>
+            </tr>
+            <tr class="table-row-hover" style="border-bottom:1px solid #F9FAFB;">
+              <td class="py-3.5 text-gray-800 font-medium">Freelance Design</td>
+              <td class="py-3.5"><span class="tag" style="background:#D1FAE5;color:#059669;">Receita</span></td>
+              <td class="py-3.5 text-gray-500 hide-mobile">BB</td>
+              <td class="py-3.5 text-gray-400 hide-mobile">05/06/2026</td>
+              <td class="py-3.5 text-right font-semibold text-emerald-500">+ R$ 1.200,00</td>
+            </tr>
+            <tr class="table-row-hover">
+              <td class="py-3.5 text-gray-800 font-medium">Uber</td>
+              <td class="py-3.5"><span class="tag" style="background:#DBEAFE;color:#2563EB;">Transporte</span></td>
+              <td class="py-3.5 text-gray-500 hide-mobile">Nubank</td>
+              <td class="py-3.5 text-gray-400 hide-mobile">04/06/2026</td>
+              <td class="py-3.5 text-right font-semibold text-red-400">− R$ 48,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    if (btn && sidebar) {
+      btn.addEventListener('click', () => {
+        sidebar.classList.toggle('mobile-open');
+      });
+    }
+  </script>
+
+</body>
+</html>

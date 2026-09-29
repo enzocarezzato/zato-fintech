@@ -1,0 +1,210 @@
+/* ============================================
+   Zato — Dashboard Styles
+   Enzo André Carezzato Brossi — RM 570890
+   ============================================ */
+
+/* Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F5F5F7;
+  color: #1a1a1a;
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  background-color: #534AB7;
+  transition: transform 0.3s ease;
+}
+
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-item:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Main Content ---- */
+.main-content {
+  padding-top: 2rem;
+}
+
+/* ---- Cores da marca ---- */
+.bg-zato {
+  background-color: #534AB7;
+}
+
+.text-zato {
+  color: #534AB7;
+}
+
+/* ---- Cards ---- */
+.card {
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(83, 74, 183, 0.1);
+}
+
+.card-saldo {
+  background: linear-gradient(135deg, #534AB7 0%, #6C63CF 100%);
+}
+
+/* ---- Badge crescimento ---- */
+.badge-up {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* ---- Botão primário ---- */
+.btn-primary {
+  background-color: #534AB7;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: #4540A0;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ---- Banco cards ---- */
+.banco-card {
+  transition: background-color 0.2s ease;
+}
+
+.banco-card:hover {
+  background-color: #EEF0FF;
+}
+
+/* ---- Gráfico de barras ---- */
+.chart-area {
+  align-items: flex-end;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.bar {
+  min-height: 8px;
+  transition: opacity 0.2s ease;
+}
+
+.bar-group:hover .bar {
+  opacity: 1 !important;
+}
+
+/* ---- Tabela ---- */
+.table-row-hover {
+  transition: background-color 0.15s ease;
+}
+
+.table-row-hover:hover {
+  background-color: #FAFAFE;
+}
+
+/* ---- Tags de categoria ---- */
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.tag-receita {
+  background-color: #D1FAE5;
+  color: #059669;
+}
+
+.tag-moradia {
+  background-color: #EDE9FF;
+  color: #534AB7;
+}
+
+.tag-alimentacao {
+  background-color: #FEF3C7;
+  color: #D97706;
+}
+
+.tag-transporte {
+  background-color: #DBEAFE;
+  color: #2563EB;
+}
+
+.tag-saude {
+  background-color: #FCE7F3;
+  color: #DB2777;
+}
+
+/* ---- Mobile Header ---- */
+.mobile-header {
+  display: none;
+}
+
+/* ============================
+   RESPONSIVIDADE — MOBILE
+   ============================ */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 260px;
+    z-index: 40;
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+    padding: 1rem;
+    padding-top: 5rem;
+  }
+
+  .chart-area {
+    height: 100px;
+  }
+
+  table {
+    font-size: 0.75rem;
+  }
+
+  th, td {
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+  }
+
+  /* Esconde colunas menos importantes no mobile */
+  th:nth-child(3),
+  td:nth-child(3),
+  th:nth-child(4),
+  td:nth-child(4) {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-saldo p.text-3xl {
+    font-size: 1.5rem;
+  }
+}
