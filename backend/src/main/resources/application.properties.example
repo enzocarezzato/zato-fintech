@@ -8,5 +8,5 @@ spring.datasource.password=SUA_SENHA
 # Mostrar SQL executado no log
 spring.jpa.show-sql=true
 
-# Nao deixar o JPA tentar criar/alterar tabelas (ja criamos pelo SQL Developer)
+# Nao deixar o JPA tentar criar/alterar tabelas (criei as tabelas pelo SQL Developer)
 spring.jpa.hibernate.ddl-auto=none
