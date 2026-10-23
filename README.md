@@ -2,7 +2,7 @@
 
 > "Controle seu dinheiro, conquiste seus objetivos."
 
-O **Zato** é uma fintech de finanças pessoais desenvolvida como projeto individual de portfólio no curso de Análise e Desenvolvimento de Sistemas da FIAP (Fase 7 · Grand Finale).
+O **Zato** é uma fintech de finanças pessoais desenvolvida como projeto individual de portfólio no curso de Análise e Desenvolvimento de Sistemas da FIAP.
 
 A proposta é simples: ajudar o usuário a registrar transações, gerenciar contas bancárias, definir metas financeiras e controlar uma lista de desejos com base em horas de trabalho.
 
