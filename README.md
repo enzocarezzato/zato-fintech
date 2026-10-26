@@ -183,7 +183,36 @@ A `prioridade` aceita `ALTA`, `MEDIA` ou `BAIXA`.
 }
 ```
 
-> Depois de testar tudo no Insomnia, vou adicionar a coleção em `docs/` para quem quiser importar.
+---
+
+## 🧪 Testes de API (Insomnia)
+
+Testei todos os endpoints no Insomnia, incluindo cenários negativos (id inexistente e dados inválidos). A collection está em `docs/testes-api-insomnia/insomnia-collection.yaml` e pode ser importada no Insomnia (**Import** > arquivo). Os prints de cada teste estão na mesma pasta.
+
+| # | Teste | Esperado | Resultado |
+|---|-------|----------|-----------|
+| 01 | Criar usuário | 201 | ✅ 201 |
+| 02 | Listar usuários | 200 | ✅ 200 |
+| 03 | Buscar usuário por id | 200 | ✅ 200 |
+| 04 | Buscar usuário inexistente | 404 | ✅ 404 |
+| 05 | Criar conta | 201 | ✅ 201 |
+| 06 | Listar contas | 200 | ✅ 200 |
+| 07 | Buscar conta inexistente | 404 | ✅ 404 |
+| 08 | Criar transação | 201 | ✅ 201 |
+| 09 | Listar transações | 200 | ✅ 200 |
+| 10 | Criar transação com tipo inválido | 400 | ❌ 500 |
+| 11 | Criar meta | 201 | ✅ 201 |
+| 12 | Listar metas | 200 | ✅ 200 |
+| 13 | Criar desejo | 201 | ✅ 201 |
+| 14 | Listar desejos | 200 | ✅ 200 |
+| 15 | Criar desejo com prioridade inválida | 400 | ❌ 500 |
+| 16 | Atualizar usuário | 200 | ✅ 200 |
+| 17 | Atualizar usuário inexistente | 404 | ✅ 404 |
+| 18 | Excluir desejo | 204 | ✅ 204 |
+| 19 | Excluir desejo inexistente | 404 | ✅ 404 |
+| 20 | Excluir usuário com dados vinculados | 409 | ❌ 500 |
+
+**17 de 20 passaram.** Os 3 que falharam têm a mesma causa: quando o Oracle recusa um dado (pela regra `CHECK` ou pela chave estrangeira), a API devolve 500 em vez de avisar o que está errado. A correção está em andamento.
 
 ---
 
@@ -194,7 +223,8 @@ A `prioridade` aceita `ALTA`, `MEDIA` ou `BAIXA`.
 - [x] Tabelas e sequences criadas no Oracle da FIAP
 - [x] Backend Spring Boot com CRUD completo (5 entidades)
 - [x] Conexão com Oracle validada
-- [ ] Testes de API documentados (Insomnia)
+- [x] Testes de API documentados (Insomnia)
+- [ ] Tratar erros de validação (400 e 409 no lugar de 500)
 - [ ] Frontend em React (Vite + React Router)
 - [ ] Telas: Login, Dashboard, Transações, Contas, Metas, Lista de Desejos, Erro 404
 - [ ] README final de entrega com usuário de teste
