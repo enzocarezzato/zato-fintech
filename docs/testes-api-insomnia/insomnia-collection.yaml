@@ -1,0 +1,539 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Zato API
+meta:
+  id: wrk_3a3ef5679ddb45f6b1baad837a92dfbd
+  created: 1793032998261
+  modified: 1793032998261
+  description: ""
+collection:
+  - name: Usuarios
+    meta:
+      id: fld_6ecd5231d4814f31859c7e1e02fa2ba5
+      created: 1793033051084
+      modified: 1793033051084
+      sortKey: -1793033051084
+      description: ""
+    children:
+      - url: http://localhost:8080/api/usuarios
+        name: Criar usuario
+        meta:
+          id: req_60e3b96748bf4232a3af1998289ba1aa
+          created: 1793033120694
+          modified: 1793033231618
+          isPrivate: false
+          description: ""
+          sortKey: -1793033120694
+        method: POST
+        body:
+          mimeType: application/json
+          text: |2-
+               {
+                 "nome": "Enzo Teste",
+                 "email": "enzo@zato.com",
+                 "senha": "123456",
+                 "dataCadastro": "2026-10-26"
+               }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/usuarios
+        name: Listar usuarios
+        meta:
+          id: req_90a1d32df47945aea80b2ddbcaa5e4b3
+          created: 1793033602920
+          modified: 1793033666712
+          isPrivate: false
+          description: ""
+          sortKey: -1793033602920
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/usuarios/1
+        name: Buscar usuario por id
+        meta:
+          id: req_46adf3e2801a474b859aa513e00a5897
+          created: 1793033718247
+          modified: 1793033769546
+          isPrivate: false
+          description: ""
+          sortKey: -1793033718247
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/usuarios/999
+        name: Buscar usuario inexistente
+        meta:
+          id: req_d84f4469d3604246a63fd7d47dea3542
+          created: 1793033793213
+          modified: 1793033835029
+          isPrivate: false
+          description: ""
+          sortKey: -1793033793213
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/usuarios/1
+        name: Atualizar usuario
+        meta:
+          id: req_05eb0e75794848a3a7b1950b0fdeefa3
+          created: 1793037203960
+          modified: 1793037270024
+          isPrivate: false
+          description: ""
+          sortKey: -1793037203960
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Enzo Atualizado",
+              "email": "enzo@zato.com",
+              "senha": "123456",
+              "dataCadastro": "2026-10-26"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/usuarios/999
+        name: Atualizar usuario inexistente
+        meta:
+          id: req_97d5fdf0ef2f465291e779ba4da90c82
+          created: 1793037306562
+          modified: 1793037343933
+          isPrivate: false
+          description: ""
+          sortKey: -1793037306562
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Enzo Atualizado",
+              "email": "enzo@zato.com",
+              "senha": "123456",
+              "dataCadastro": "2026-10-26"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/usuarios/1
+        name: Excluir usuarios com dados vinculados
+        meta:
+          id: req_3223c99f343245f9b0781addeeaf4475
+          created: 1793037508989
+          modified: 1793037561921
+          isPrivate: false
+          description: ""
+          sortKey: -1793037508989
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Contas
+    meta:
+      id: fld_ae2755341d764d6cb04424c646090b47
+      created: 1793033078254
+      modified: 1793033078254
+      sortKey: -1793033078254
+      description: ""
+    children:
+      - url: http://localhost:8080/api/contas
+        name: Criar conta
+        meta:
+          id: req_483e8a1ab36a44a090e19cc8d0d8b730
+          created: 1793034113303
+          modified: 1793034188105
+          isPrivate: false
+          description: ""
+          sortKey: -1793034113303
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nomeBanco": "Nubank",
+              "tipoConta": "corrente",
+              "saldo": 1500.00,
+              "cor": "#534AB7",
+              "usuario": { "id": 1 }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/contas
+        name: Listar contas
+        meta:
+          id: req_487e0295adba47488370f658fe3a2061
+          created: 1793035492020
+          modified: 1793035584099
+          isPrivate: false
+          description: ""
+          sortKey: -1793035492020
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/contas/999
+        name: Buscar contas inexistentes
+        meta:
+          id: req_bbeaca4aae7848949b44e41fd2846ba6
+          created: 1793035624969
+          modified: 1793035997437
+          isPrivate: false
+          description: ""
+          sortKey: -1793035624969
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Transacoes
+    meta:
+      id: fld_f8d5f5b06d124c2c8b33fc0da019fb12
+      created: 1793033086290
+      modified: 1793033086290
+      sortKey: -1793033086290
+      description: ""
+    children:
+      - url: http://localhost:8080/api/transacoes
+        name: Criar transacao
+        meta:
+          id: req_93665171bb2549baa3146e8b3e4070b4
+          created: 1793036052030
+          modified: 1793036109001
+          isPrivate: false
+          description: ""
+          sortKey: -1793036052030
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "descricao": "Salário",
+              "valor": 3500.00,
+              "tipo": "RECEITA",
+              "dataTransacao": "2026-10-26",
+              "categoria": "renda",
+              "contaBancaria": { "id": 1 }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/transacoes
+        name: Listar transacoes
+        meta:
+          id: req_7a668f62a5754480a6b58761ac0d100c
+          created: 1793036196065
+          modified: 1793036227763
+          isPrivate: false
+          description: ""
+          sortKey: -1793036196065
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/transacoes
+        name: Criar transacao com tipo invalido
+        meta:
+          id: req_085447da2a564c2db07ebe1700490050
+          created: 1793036281867
+          modified: 1793036361428
+          isPrivate: false
+          description: ""
+          sortKey: -1793036281867
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "descricao": "Salário",
+              "valor": 3500.00,
+              "tipo": "ENTRADA",
+              "dataTransacao": "2026-10-26",
+              "categoria": "renda",
+              "contaBancaria": { "id": 1 }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Metas
+    meta:
+      id: fld_7633c2d0ba134586995677af225e5eca
+      created: 1793033094016
+      modified: 1793033094016
+      sortKey: -1793033094016
+      description: ""
+    children:
+      - url: http://localhost:8080/api/metas
+        name: Criar meta
+        meta:
+          id: req_f194f0923c9d4de38afa52c8d829adc5
+          created: 1793036546296
+          modified: 1793036595206
+          isPrivate: false
+          description: ""
+          sortKey: -1793036546296
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Viagem para Europa",
+              "valorObjetivo": 15000.00,
+              "valorAtual": 2000.00,
+              "dataPrazo": "2027-06-01",
+              "status": "em andamento",
+              "usuario": { "id": 1 }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/metas
+        name: Listar metas
+        meta:
+          id: req_0e938252e0b146069b2c5aba8de05d0b
+          created: 1793037059394
+          modified: 1793037089173
+          isPrivate: false
+          description: ""
+          sortKey: -1793037059394
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Desejos
+    meta:
+      id: fld_509cc3e239de4249b69078b1b97e707b
+      created: 1793033101300
+      modified: 1793033101300
+      sortKey: -1793033101300
+      description: ""
+    children:
+      - url: http://localhost:8080/api/desejos
+        name: Criar desejo
+        meta:
+          id: req_8086ee5c6f1241c5abd96fb2346699d4
+          created: 1793036689447
+          modified: 1793036761954
+          isPrivate: false
+          description: ""
+          sortKey: -1793036689447
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nomeProduto": "Headphone Sony WH-1000XM5",
+              "valorEstimado": 1899.00,
+              "link": "https://www.amazon.com.br",
+              "prioridade": "ALTA",
+              "usuario": { "id": 1 }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/desejos
+        name: Listar desejos
+        meta:
+          id: req_886452c3657945bdaf5edee382941f15
+          created: 1793036785533
+          modified: 1793036819911
+          isPrivate: false
+          description: ""
+          sortKey: -1793036785533
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/desejos
+        name: Criar desejo com prioridade invalida
+        meta:
+          id: req_a40ec2bbe5d24a5b83b53c410e8c83ed
+          created: 1793036855389
+          modified: 1793036915577
+          isPrivate: false
+          description: ""
+          sortKey: -1793036855389
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nomeProduto": "Headphone Sony WH-1000XM5",
+              "valorEstimado": 1899.00,
+              "link": "https://www.amazon.com.br",
+              "prioridade": "URGENTE",
+              "usuario": { "id": 1 }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/desejos/1
+        name: Excluir desejo
+        meta:
+          id: req_378ed63c989c4854946f33b9b477b561
+          created: 1793037383612
+          modified: 1793037424513
+          isPrivate: false
+          description: ""
+          sortKey: -1793037383612
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/desejos/999
+        name: Excluir desejo inexistente
+        meta:
+          id: req_5016ad82140d4db4ba9079a1a738213e
+          created: 1793037449611
+          modified: 1793037473828
+          isPrivate: false
+          description: ""
+          sortKey: -1793037449611
+        method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_0decb5417a464fc8885b46519b712becbd3dcb70
+    created: 1793032998265
+    modified: 1793032998265
+environments:
+  name: Base Environment
+  meta:
+    id: env_0decb5417a464fc8885b46519b712becbd3dcb70
+    created: 1793032998263
+    modified: 1793032998263
+    isPrivate: false

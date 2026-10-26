@@ -39,9 +39,14 @@ zato-fintech/
 │   │           └── application.properties.example
 │   └── pom.xml
 ├── docs/
-│   └── sql/
-│       └── create-tables.sql                 # Script de criação das tabelas e sequences
+│   ├── sql/
+│   │   └── create-tables.sql                 # Script de criação das tabelas e sequences
+│   └── testes-api-insomnia/
+│       ├── insomnia-collection.yaml          # Collection para importar no Insomnia
+│       └── *.png                             # Prints de cada teste
 ├── frontend/                                 # SPA em React (em breve)
+├── index.html                                # Primeira versão do front (HTML + Tailwind)
+├── estilo.css
 ├── preview.png
 └── README.md
 ```
