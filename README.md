@@ -31,6 +31,7 @@ zato-fintech/
 │   │   └── main/
 │   │       ├── java/br/com/fiap/zato/
 │   │       │   ├── controller/               # Endpoints REST
+│   │       │   ├── exception/                # Exceções com o status HTTP de cada erro
 │   │       │   ├── model/                    # Entidades JPA
 │   │       │   ├── repository/               # Interfaces JpaRepository
 │   │       │   ├── service/                  # Regras de negócio
@@ -115,6 +116,8 @@ Cada entidade tem o CRUD completo:
 | POST   | `/api/{recurso}`      | 201 Created       | —                   |
 | PUT    | `/api/{recurso}/{id}` | 200 OK            | 404 Not Found       |
 | DELETE | `/api/{recurso}/{id}` | 204 No Content    | 404 Not Found       |
+
+Quando os dados são inválidos (por exemplo, um tipo de transação que não existe), a API devolve **400 Bad Request**. Ao tentar excluir um registro que ainda tem outros ligados a ele, devolve **409 Conflict**. Nos dois casos, o campo `message` da resposta explica o motivo.
 
 Recursos: `usuarios`, `contas`, `transacoes`, `metas` e `desejos`. Abaixo está o body esperado no POST e no PUT de cada um.
 
@@ -210,9 +213,21 @@ Testei todos os endpoints no Insomnia, incluindo cenários negativos (id inexist
 | 17 | Atualizar usuário inexistente | 404 | ✅ 404 |
 | 18 | Excluir desejo | 204 | ✅ 204 |
 | 19 | Excluir desejo inexistente | 404 | ✅ 404 |
-| 20 | Excluir usuário com dados vinculados | 409 | ❌ 500 |
+| 20 | Excluir usuário com dados vinculados | 409 | ✅ 409 (era 500, corrigido) |
+| 21 | Excluir conta com transações | 409 | ✅ 409 |
 
-**17 de 20 passaram.** Os 3 que falharam têm a mesma causa: quando o Oracle recusa um dado (pela regra `CHECK` ou pela chave estrangeira), a API devolve 500 em vez de avisar o que está errado. A correção está em andamento.
+**Todos os 21 testes passam.**
+
+### Bugs encontrados e corrigidos
+
+Na primeira rodada, 3 testes negativos devolviam **500 Internal Server Error**. Os três tinham a mesma causa: a API mandava os dados direto para o Oracle, e quando o banco recusava (pela regra `CHECK` ou pela chave estrangeira) o erro chegava sem tratamento. Lendo o código, encontrei um quarto caso igual (excluir conta com transações), que virou o teste 21.
+
+Para corrigir, criei duas exceções na pasta `exception/`, cada uma marcada com `@ResponseStatus`:
+
+- `DadoInvalidoException` → **400 Bad Request**: o service confere o tipo da transação e a prioridade do desejo antes de salvar
+- `RegistroVinculadoException` → **409 Conflict**: o service trata a recusa do banco ao excluir um registro que ainda tem outros ligados a ele
+
+Agora a resposta também explica o motivo, por exemplo: `"message": "Tipo inválido. Use RECEITA ou DESPESA."`. Os prints de antes (`*-500-bug.png`) e de depois (`*-corrigido.png`) estão na pasta dos testes.
 
 ---
 
@@ -224,7 +239,7 @@ Testei todos os endpoints no Insomnia, incluindo cenários negativos (id inexist
 - [x] Backend Spring Boot com CRUD completo (5 entidades)
 - [x] Conexão com Oracle validada
 - [x] Testes de API documentados (Insomnia)
-- [ ] Tratar erros de validação (400 e 409 no lugar de 500)
+- [x] Tratar erros de validação (400 e 409 no lugar de 500)
 - [ ] Frontend em React (Vite + React Router)
 - [ ] Telas: Login, Dashboard, Transações, Contas, Metas, Lista de Desejos, Erro 404
 - [ ] README final de entrega com usuário de teste
