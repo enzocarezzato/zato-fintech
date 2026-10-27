@@ -1,5 +1,6 @@
 package br.com.fiap.zato.service;
 
+import br.com.fiap.zato.exception.DadoInvalidoException;
 import br.com.fiap.zato.exception.RegistroVinculadoException;
 import br.com.fiap.zato.model.Usuario;
 import br.com.fiap.zato.repository.UsuarioRepository;
@@ -25,6 +26,10 @@ public class UsuarioService {
     }
 
     public Usuario salvar(Usuario usuario) {
+        // O e-mail é único na tabela: confiro antes, para não deixar o banco recusar com erro 500
+        if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+            throw new DadoInvalidoException("Já existe um usuário cadastrado com este e-mail.");
+        }
         return usuarioRepository.save(usuario);
     }
 
@@ -53,5 +58,15 @@ public class UsuarioService {
             return true;
         }
         return false;
+    }
+
+    // Login: procuro o usuário pelo e-mail e confiro se a senha bate.
+    // Se não encontrar ou a senha estiver errada, devolvo vazio (o controller transforma em 401)
+    public Optional<Usuario> autenticar(String email, String senha) {
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+        if (usuario.isPresent() && usuario.get().getSenha().equals(senha)) {
+            return usuario;
+        }
+        return Optional.empty();
     }
 }

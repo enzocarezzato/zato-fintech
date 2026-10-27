@@ -30,11 +30,20 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST /api/usuarios -> 201 Created
+    // POST /api/usuarios -> 201 Created (ou 400 se o e-mail já existir)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Usuario criar(@RequestBody Usuario usuario) {
         return usuarioService.salvar(usuario);
+    }
+
+    // POST /api/usuarios/login -> 200 OK com os dados do usuário ou 401 Unauthorized
+    // O body só precisa de "email" e "senha"
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> login(@RequestBody Usuario credenciais) {
+        return usuarioService.autenticar(credenciais.getEmail(), credenciais.getSenha())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
     // PUT /api/usuarios/{id} -> 200 OK ou 404 Not Found
@@ -45,7 +54,7 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // DELETE /api/usuarios/{id} -> 204 No Content ou 404 Not Found
+    // DELETE /api/usuarios/{id} -> 204 No Content, 404 Not Found ou 409 Conflict
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         if (usuarioService.deletar(id)) {

@@ -10,3 +10,6 @@ spring.jpa.show-sql=true
 
 # Nao deixar o JPA tentar criar/alterar tabelas (criei as tabelas pelo SQL Developer)
 spring.jpa.hibernate.ddl-auto=none
+
+# Mostrar a mensagem das excecoes na resposta da API (ex: "Tipo invalido. Use RECEITA ou DESPESA.")
+server.error.include-message=always

@@ -121,6 +121,19 @@ Quando os dados são inválidos (por exemplo, um tipo de transação que não ex
 
 Recursos: `usuarios`, `contas`, `transacoes`, `metas` e `desejos`. Abaixo está o body esperado no POST e no PUT de cada um.
 
+### `POST /api/usuarios/login`
+
+Recebe o e-mail e a senha e devolve **200 OK** com os dados do usuário, ou **401 Unauthorized** se o e-mail ou a senha estiverem errados. A resposta é a mesma nos dois casos de erro, para não revelar quais e-mails estão cadastrados.
+
+```json
+{
+  "email": "enzo@zato.com",
+  "senha": "123456"
+}
+```
+
+A senha nunca é devolvida nas respostas da API: ela só entra (no cadastro e no login).
+
 ### `/api/usuarios`
 
 ```json
@@ -215,8 +228,13 @@ Testei todos os endpoints no Insomnia, incluindo cenários negativos (id inexist
 | 19 | Excluir desejo inexistente | 404 | ✅ 404 |
 | 20 | Excluir usuário com dados vinculados | 409 | ✅ 409 (era 500, corrigido) |
 | 21 | Excluir conta com transações | 409 | ✅ 409 |
+| 22 | Login com dados corretos | 200 | ✅ 200, sem a senha na resposta |
+| 23 | Login com senha errada | 401 | ✅ 401 |
+| 24 | Login com e-mail inexistente | 401 | ✅ 401 |
+| 25 | Criar usuário com e-mail repetido | 400 | ✅ 400 |
+| 26 | Listar usuários depois do ajuste da senha | 200 | ✅ 200, sem a senha na resposta |
 
-**Todos os 21 testes passam.**
+**Todos os 26 testes passam.**
 
 ### Bugs encontrados e corrigidos
 
@@ -240,6 +258,7 @@ Agora a resposta também explica o motivo, por exemplo: `"message": "Tipo invál
 - [x] Conexão com Oracle validada
 - [x] Testes de API documentados (Insomnia)
 - [x] Tratar erros de validação (400 e 409 no lugar de 500)
+- [x] Endpoint de login (sem devolver a senha nas respostas)
 - [ ] Frontend em React (Vite + React Router)
 - [ ] Telas: Login, Dashboard, Transações, Contas, Metas, Lista de Desejos, Erro 404
 - [ ] README final de entrega com usuário de teste

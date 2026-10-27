@@ -20,7 +20,7 @@ collection:
         meta:
           id: req_60e3b96748bf4232a3af1998289ba1aa
           created: 1793033120694
-          modified: 1793033231618
+          modified: 1793113499497
           isPrivate: false
           description: ""
           sortKey: -1793033120694
@@ -177,6 +177,36 @@ collection:
             send: true
             store: true
           rebuildPath: true
+      - url: http://localhost:8080/api/usuarios
+        name: Criar usuario com email repetido
+        meta:
+          id: req_8b790e2fb5834bc59491693de9470f18
+          created: 1793113988163
+          modified: 1793113988163
+          isPrivate: false
+          description: ""
+          sortKey: -1793033120644
+        method: POST
+        body:
+          mimeType: application/json
+          text: |2-
+               {
+                 "nome": "Enzo Teste",
+                 "email": "enzo@zato.com",
+                 "senha": "123456",
+                 "dataCadastro": "2026-10-26"
+               }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
   - name: Contas
     meta:
       id: fld_ae2755341d764d6cb04424c646090b47
@@ -244,6 +274,24 @@ collection:
           description: ""
           sortKey: -1793035624969
         method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/contas/1
+        name: Excluir contas com transacoes
+        meta:
+          id: req_d467aa1d2c3e4295913de034e3d6fcdd
+          created: 1793111563590
+          modified: 1793111611330
+          isPrivate: false
+          description: ""
+          sortKey: -1793111563590
+        method: DELETE
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -516,6 +564,98 @@ collection:
           description: ""
           sortKey: -1793037449611
         method: DELETE
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Login
+    meta:
+      id: fld_a46160b3ea424770952ef770f666366a
+      created: 1793113517309
+      modified: 1793113517309
+      sortKey: -1793113517309
+      description: ""
+    children:
+      - url: http://localhost:8080/api/usuarios/login
+        name: Login com dados corretos
+        meta:
+          id: req_7956619f905a4c94a08b9b2203180ac2
+          created: 1793113530849
+          modified: 1793113574635
+          isPrivate: false
+          description: ""
+          sortKey: -1793113530849
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "enzo@zato.com",
+              "senha": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/usuarios/login
+        name: Login com senha errada
+        meta:
+          id: req_2f3892d7445d41a68e6f5347f1b113e0
+          created: 1793113830889
+          modified: 1793113843497
+          isPrivate: false
+          description: ""
+          sortKey: -1793112547219.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "enzo@zato.com",
+              "senha": "errada"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/api/usuarios/login
+        name: Login com email inexistente
+        meta:
+          id: req_33fc30ae52bb4816b7b02d68a5cc972f
+          created: 1793113886044
+          modified: 1793113902090
+          isPrivate: false
+          description: ""
+          sortKey: -1793112055404.75
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "ninguem@zato.com",
+              "senha": "errada"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
         settings:
           renderRequestBody: true
           encodeUrl: true

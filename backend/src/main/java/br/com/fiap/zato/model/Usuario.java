@@ -1,5 +1,6 @@
 package br.com.fiap.zato.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -26,6 +27,9 @@ public class Usuario {
     @Column(name = "DS_EMAIL", nullable = false, unique = true, length = 150)
     private String email;
 
+    // WRITE_ONLY: a senha pode ser recebida no JSON (cadastro e login),
+    // mas nunca é devolvida nas respostas da API
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "DS_SENHA", nullable = false, length = 255)
     private String senha;
 
