@@ -1,8 +1,10 @@
 package br.com.fiap.zato.service;
 
+import br.com.fiap.zato.exception.RegistroVinculadoException;
 import br.com.fiap.zato.model.Usuario;
 import br.com.fiap.zato.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +43,13 @@ public class UsuarioService {
 
     public boolean deletar(Long id) {
         if (usuarioRepository.existsById(id)) {
-            usuarioRepository.deleteById(id);
+            try {
+                usuarioRepository.deleteById(id);
+            } catch (DataIntegrityViolationException e) {
+                // O banco recusou por causa das chaves estrangeiras: o usuário ainda tem registros ligados a ele
+                throw new RegistroVinculadoException(
+                        "Não é possível excluir o usuário: ele ainda tem contas, metas ou desejos cadastrados.");
+            }
             return true;
         }
         return false;

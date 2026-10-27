@@ -1,5 +1,6 @@
 package br.com.fiap.zato.service;
 
+import br.com.fiap.zato.exception.DadoInvalidoException;
 import br.com.fiap.zato.model.Transacao;
 import br.com.fiap.zato.repository.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,14 @@ public class TransacaoService {
     }
 
     public Transacao salvar(Transacao transacao) {
+        validarTipo(transacao.getTipo());
         return transacaoRepository.save(transacao);
     }
 
     public Optional<Transacao> atualizar(Long id, Transacao transacaoAtualizada) {
         Optional<Transacao> transacaoExistente = transacaoRepository.findById(id);
         if (transacaoExistente.isPresent()) {
+            validarTipo(transacaoAtualizada.getTipo());
             Transacao transacao = transacaoExistente.get();
             transacao.setDescricao(transacaoAtualizada.getDescricao());
             transacao.setValor(transacaoAtualizada.getValor());
@@ -46,5 +49,12 @@ public class TransacaoService {
             return true;
         }
         return false;
+    }
+
+    // Confiro o tipo antes de salvar, para não deixar o erro estourar no banco (que daria 500)
+    private void validarTipo(String tipo) {
+        if (!"RECEITA".equals(tipo) && !"DESPESA".equals(tipo)) {
+            throw new DadoInvalidoException("Tipo inválido. Use RECEITA ou DESPESA.");
+        }
     }
 }

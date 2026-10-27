@@ -200,12 +200,12 @@ Testei todos os endpoints no Insomnia, incluindo cenários negativos (id inexist
 | 07 | Buscar conta inexistente | 404 | ✅ 404 |
 | 08 | Criar transação | 201 | ✅ 201 |
 | 09 | Listar transações | 200 | ✅ 200 |
-| 10 | Criar transação com tipo inválido | 400 | ❌ 500 |
+| 10 | Criar transação com tipo inválido | 400 | ✅ 400 (era 500, corrigido) |
 | 11 | Criar meta | 201 | ✅ 201 |
 | 12 | Listar metas | 200 | ✅ 200 |
 | 13 | Criar desejo | 201 | ✅ 201 |
 | 14 | Listar desejos | 200 | ✅ 200 |
-| 15 | Criar desejo com prioridade inválida | 400 | ❌ 500 |
+| 15 | Criar desejo com prioridade inválida | 400 | ✅ 400 (era 500, corrigido) |
 | 16 | Atualizar usuário | 200 | ✅ 200 |
 | 17 | Atualizar usuário inexistente | 404 | ✅ 404 |
 | 18 | Excluir desejo | 204 | ✅ 204 |

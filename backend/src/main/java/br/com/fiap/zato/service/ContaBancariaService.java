@@ -1,8 +1,10 @@
 package br.com.fiap.zato.service;
 
+import br.com.fiap.zato.exception.RegistroVinculadoException;
 import br.com.fiap.zato.model.ContaBancaria;
 import br.com.fiap.zato.repository.ContaBancariaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +43,13 @@ public class ContaBancariaService {
 
     public boolean deletar(Long id) {
         if (contaBancariaRepository.existsById(id)) {
-            contaBancariaRepository.deleteById(id);
+            try {
+                contaBancariaRepository.deleteById(id);
+            } catch (DataIntegrityViolationException e) {
+                // O banco recusou por causa da chave estrangeira: a conta ainda tem transações
+                throw new RegistroVinculadoException(
+                        "Não é possível excluir a conta: ela ainda tem transações cadastradas.");
+            }
             return true;
         }
         return false;
