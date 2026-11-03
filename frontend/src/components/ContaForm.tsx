@@ -18,6 +18,10 @@ const ContaForm = ({ contaInicial, usuarioId, onSalvar, onCancelar }: ContaFormP
   const [saldo, setSaldo] = useState(String(contaInicial?.saldo ?? ''))
   const [cor, setCor] = useState(contaInicial?.cor ?? '#047857')
 
+  // Se a conta veio do banco com um tipo fora da lista (ex: "corrente", criado pelo Insomnia),
+  // mostro ele também, para o select não exibir uma opção diferente da que vai ser salva
+  const tiposDisponiveis = tiposDeConta.includes(tipoConta) ? tiposDeConta : [tipoConta, ...tiposDeConta]
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     onSalvar({
@@ -47,7 +51,7 @@ const ContaForm = ({ contaInicial, usuarioId, onSalvar, onCancelar }: ContaFormP
         <label>
           Tipo de conta
           <select value={tipoConta} onChange={(e) => setTipoConta(e.target.value)}>
-            {tiposDeConta.map((tipo) => (
+            {tiposDisponiveis.map((tipo) => (
               <option key={tipo} value={tipo}>
                 {tipo}
               </option>

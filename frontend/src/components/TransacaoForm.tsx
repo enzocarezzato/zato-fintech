@@ -22,6 +22,10 @@ const TransacaoForm = ({ contas, transacaoInicial, onSalvar, onCancelar }: Trans
   const [categoria, setCategoria] = useState(transacaoInicial?.categoria ?? categorias[0])
   const [contaId, setContaId] = useState(String(transacaoInicial?.contaBancaria.id ?? contas[0]?.id ?? ''))
 
+  // Se a transação veio do banco com uma categoria fora da lista (ex: "renda", criada pelo Insomnia),
+  // mostro ela também, para o select não exibir uma opção diferente da que vai ser salva
+  const categoriasDisponiveis = categorias.includes(categoria) ? categorias : [categoria, ...categorias]
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     onSalvar({
@@ -84,7 +88,7 @@ const TransacaoForm = ({ contas, transacaoInicial, onSalvar, onCancelar }: Trans
         <label>
           Categoria
           <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-            {categorias.map((item) => (
+            {categoriasDisponiveis.map((item) => (
               <option key={item} value={item}>
                 {item}
               </option>

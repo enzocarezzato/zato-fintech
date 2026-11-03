@@ -258,6 +258,60 @@
   text-decoration: underline;
 }
 
+/* ---------- Metas: card com barra de progresso ---------- */
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meta-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.meta-topo h2 {
+  margin-bottom: 0;
+}
+
+.meta-status {
+  background-color: var(--verde-claro);
+  color: var(--verde-escuro);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.meta-status::first-letter {
+  text-transform: uppercase;
+}
+
+.meta-barra {
+  height: 10px;
+  background-color: var(--fundo);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meta-barra-preenchida {
+  height: 100%;
+  background-color: var(--verde);
+  border-radius: 999px;
+  transition: width 0.3s;
+}
+
+.meta-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--texto-suave);
+}
+
 /* ---------- Mensagem de erro ---------- */
 .mensagem-erro {
   background-color: #fef2f2;
