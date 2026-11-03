@@ -1,4 +1,5 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { buscarUsuarioLogado, sair } from '../services/api'
 
 // Itens do menu: para adicionar uma página nova, basta incluir aqui
 const itensMenu = [
@@ -9,6 +10,14 @@ const itensMenu = [
 ]
 
 const Sidebar = () => {
+  const navigate = useNavigate()
+  const usuario = buscarUsuarioLogado()
+
+  const handleSair = () => {
+    sair()
+    navigate('/login')
+  }
+
   return (
     <aside className="sidebar">
       <div className="sidebar-marca">
@@ -33,9 +42,17 @@ const Sidebar = () => {
         </ul>
       </nav>
 
-      <NavLink to="/login" className="sidebar-sair">
-        Sair
-      </NavLink>
+      <div className="sidebar-rodape">
+        {usuario && (
+          <div className="sidebar-usuario">
+            <span className="sidebar-usuario-nome">{usuario.nome}</span>
+            <span className="sidebar-usuario-email">{usuario.email}</span>
+          </div>
+        )}
+        <button type="button" className="sidebar-sair" onClick={handleSair}>
+          Sair
+        </button>
+      </div>
     </aside>
   )
 }

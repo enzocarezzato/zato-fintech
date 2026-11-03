@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import PageHeader from '../components/PageHeader'
+import { buscarUsuarioLogado } from '../services/api'
 
 const atalhos = [
   { caminho: '/contas', titulo: 'Contas Bancárias', descricao: 'Cadastre e acompanhe suas contas.' },
@@ -8,9 +9,14 @@ const atalhos = [
 ]
 
 const HomePage = () => {
+  const usuario = buscarUsuarioLogado()
+
   return (
     <>
-      <PageHeader titulo="Dashboard" subtitulo="Controle seu dinheiro, conquiste seus objetivos." />
+      <PageHeader
+        titulo={`Olá, ${usuario?.nome ?? ''}`}
+        subtitulo="Controle seu dinheiro, conquiste seus objetivos."
+      />
 
       <div className="cards">
         {atalhos.map((atalho) => (

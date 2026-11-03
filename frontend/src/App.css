@@ -64,9 +64,52 @@
   background-color: rgba(255, 255, 255, 0.18);
 }
 
-.sidebar-sair {
+.sidebar-rodape {
   margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-usuario {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px 8px;
+}
+
+.sidebar-usuario-nome {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sidebar-usuario-email {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+.sidebar-sair {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
   opacity: 0.85;
+}
+
+/* ---------- Mensagem de erro ---------- */
+.mensagem-erro {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* ---------- Cabeçalho das páginas ---------- */
@@ -245,8 +288,9 @@
     flex-wrap: wrap;
   }
 
-  .sidebar-sair {
+  .sidebar-rodape {
     margin-top: 8px;
+    padding-top: 8px;
   }
 
   .layout-conteudo {
