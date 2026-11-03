@@ -233,6 +233,31 @@
   color: var(--texto-suave);
 }
 
+/* ---------- Transações: cores de receita e despesa e cards de resumo ---------- */
+.valor-receita {
+  color: var(--verde);
+}
+
+.valor-despesa {
+  color: #b91c1c;
+}
+
+.resumo {
+  margin-bottom: 24px;
+}
+
+.resumo-valor {
+  display: block;
+  font-size: 22px;
+  margin-top: 4px;
+}
+
+.link {
+  color: var(--verde);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
 /* ---------- Mensagem de erro ---------- */
 .mensagem-erro {
   background-color: #fef2f2;
@@ -240,7 +265,7 @@
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 /* ---------- Mensagem de sucesso ---------- */
@@ -250,7 +275,7 @@
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .botao:disabled {
