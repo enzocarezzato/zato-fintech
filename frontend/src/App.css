@@ -97,10 +97,156 @@
   opacity: 0.85;
 }
 
+/* ---------- Formulários das páginas ---------- */
+.formulario {
+  margin-bottom: 24px;
+}
+
+.formulario-campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.formulario input,
+.formulario select {
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 15px;
+  background-color: var(--branco);
+}
+
+.formulario input[type='color'] {
+  height: 42px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.formulario input:focus,
+.formulario select:focus {
+  outline: 2px solid var(--verde);
+  border-color: transparent;
+}
+
+.formulario-botoes {
+  display: flex;
+  gap: 12px;
+}
+
+.botao-secundario {
+  background-color: transparent;
+  color: var(--texto);
+  border: 1px solid var(--borda);
+}
+
+.botao-secundario:hover {
+  background-color: var(--fundo);
+}
+
+.botao-novo {
+  margin-bottom: 24px;
+}
+
+/* ---------- Listas (contas, transações, metas) ---------- */
+.lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lista-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.lista-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lista-item-info span {
+  color: var(--texto-suave);
+  font-size: 13px;
+}
+
+.lista-item-valor {
+  font-size: 16px;
+}
+
+.lista-item-acoes {
+  display: flex;
+  gap: 4px;
+}
+
+.conta-cor {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--branco);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.botao-link {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--verde);
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.botao-link:hover {
+  background-color: var(--verde-claro);
+}
+
+.botao-link-perigo {
+  color: #b91c1c;
+}
+
+.botao-link-perigo:hover {
+  background-color: #fef2f2;
+}
+
+.texto-suave {
+  color: var(--texto-suave);
+}
+
 /* ---------- Mensagem de erro ---------- */
 .mensagem-erro {
   background-color: #fef2f2;
   color: #b91c1c;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* ---------- Mensagem de sucesso ---------- */
+.mensagem-sucesso {
+  background-color: var(--verde-claro);
+  color: var(--verde-escuro);
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 14px;
