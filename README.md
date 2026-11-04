@@ -1,4 +1,4 @@
-# 💜 Zato — Fintech de Finanças Pessoais
+# 💚 Zato — Fintech de Finanças Pessoais
 
 > "Controle seu dinheiro, conquiste seus objetivos."
 
@@ -16,9 +16,9 @@ O projeto em si é uma fintech: um assistente financeiro pessoal que ajuda o usu
 |------------|---------------------------------------------------|
 | Backend    | Java 21 · Spring Boot 3.3.5 · Maven               |
 | Banco      | Oracle (instância da FIAP)                        |
-| Frontend   | React · Vite · React Router *(em breve)*          |
+| Frontend   | React 19 · TypeScript · Vite · React Router       |
 | Testes     | Insomnia (API) · Cypress E2E *(em breve)*         |
-| Estilo     | Tailwind CSS · Fonte Inter · Roxo `#534AB7`       |
+| Estilo     | CSS próprio · Fonte Inter · Verde `#047857`       |
 
 ---
 
@@ -45,7 +45,17 @@ zato-fintech/
 │   └── testes-api-insomnia/
 │       ├── insomnia-collection.yaml          # Collection para importar no Insomnia
 │       └── *.png                             # Prints de cada teste
-├── frontend/                                 # SPA em React (em breve)
+├── frontend/                                 # SPA em React + TypeScript (Vite)
+│   ├── src/
+│   │   ├── components/                       # Layout, Sidebar, PageHeader e formulários
+│   │   ├── pages/                            # Uma página para cada rota
+│   │   ├── services/                         # Chamadas para a API (fetch)
+│   │   ├── types/                            # Formato dos dados de cada entidade
+│   │   ├── utils/                            # Formatação de moeda e data
+│   │   ├── App.tsx                           # Rotas da aplicação
+│   │   └── main.tsx
+│   ├── index.html
+│   └── package.json
 ├── index.html                                # Primeira versão do front (HTML + Tailwind)
 ├── estilo.css
 ├── preview.png
@@ -105,6 +115,63 @@ A API sobe em `http://localhost:8080`.
 
 ---
 
+## 💻 Como rodar o frontend
+
+### Pré-requisitos
+
+- Node.js 24 (com o npm)
+- O backend rodando em `http://localhost:8080`
+
+### 1. Instale as dependências
+
+Dentro da pasta `frontend/`:
+
+```bash
+cd frontend
+npm install
+```
+
+> No PowerShell do Windows, se aparecer um erro de execução de scripts, use `npm.cmd install` e `npm.cmd run dev`, ou rode os comandos no Prompt de Comando (cmd).
+
+### 2. Execute
+
+```bash
+npm run dev
+```
+
+O front abre em `http://localhost:5173`.
+
+### 3. Entre com o usuário de teste
+
+| Campo  | Valor           |
+|--------|-----------------|
+| E-mail | `enzo@zato.com` |
+| Senha  | `123456`        |
+
+Se o banco estiver vazio, crie esse usuário antes com um `POST /api/usuarios` (pelo Insomnia), usando o body da seção [`/api/usuarios`](#apiusuarios).
+
+---
+
+## 🖥️ Telas do front-end
+
+| Rota          | Tela              | O que faz                                                            |
+|---------------|-------------------|----------------------------------------------------------------------|
+| `/login`      | Login             | Entra com e-mail e senha pela API e guarda o usuário no navegador    |
+| `/`           | Dashboard         | Boas-vindas e atalhos para as outras telas                           |
+| `/contas`     | Contas Bancárias  | CRUD completo das contas                                             |
+| `/transacoes` | Transações        | CRUD completo, com totais de receitas, despesas e saldo              |
+| `/metas`      | Metas             | CRUD completo, com barra de progresso de cada meta                   |
+| qualquer outra| Página de erro    | Página 404 personalizada                                             |
+
+Como funciona por dentro:
+
+- **Rotas (SPA):** uso o React Router. As telas internas ficam dentro do componente `Layout`, que mostra a sidebar e redireciona para o login quem não entrou.
+- **Componentes e props:** o `PageHeader` recebe título e subtítulo, e cada formulário (`ContaForm`, `TransacaoForm`, `MetaForm`) recebe os dados para editar e as funções `onSalvar` e `onCancelar`. O mesmo formulário serve para criar e para editar.
+- **Hooks:** `useState` guarda os dados de cada tela e `useEffect` busca os dados na API quando a página abre. Também uso `useNavigate` para trocar de tela depois do login e do logout.
+- **Mensagens:** os erros que a API devolve (por exemplo, o 409 ao excluir uma conta com transações) aparecem na tela, e cada ação que dá certo mostra uma mensagem de sucesso que some sozinha.
+
+---
+
 ## 🔌 Endpoints da API
 
 Cada entidade tem o CRUD completo:
@@ -150,7 +217,7 @@ A senha nunca é devolvida nas respostas da API: ela só entra (no cadastro e no
 ```json
 {
   "nomeBanco": "Nubank",
-  "tipoConta": "corrente",
+  "tipoConta": "Corrente",
   "saldo": 1500.00,
   "cor": "#534AB7",
   "usuario": { "id": 1 }
@@ -167,7 +234,7 @@ O `tipo` aceita `RECEITA` ou `DESPESA`.
   "valor": 3500.00,
   "tipo": "RECEITA",
   "dataTransacao": "2026-10-23",
-  "categoria": "renda",
+  "categoria": "Salário",
   "contaBancaria": { "id": 1 }
 }
 ```
@@ -259,9 +326,12 @@ Agora a resposta também explica o motivo, por exemplo: `"message": "Tipo invál
 - [x] Testes de API documentados (Insomnia)
 - [x] Tratar erros de validação (400 e 409 no lugar de 500)
 - [x] Endpoint de login (sem devolver a senha nas respostas)
-- [ ] Frontend em React (Vite + React Router)
-- [ ] Telas: Login, Dashboard, Transações, Contas, Metas, Lista de Desejos, Erro 404
-- [ ] README final de entrega com usuário de teste
+- [x] Frontend em React (Vite + React Router)
+- [x] Telas: Login, Dashboard, Contas, Transações, Metas e Erro 404
+- [x] CRUD de Contas, Transações e Metas ligado na API
+- [x] README de entrega com usuário de teste
+- [ ] Tela da Lista de Desejos
+- [ ] Testes E2E com Cypress
 
 ---
 
